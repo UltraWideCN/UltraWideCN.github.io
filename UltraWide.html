@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<!-- saved from url=(0020)http://ultrawide.cn/ -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UltraWide</title>
+  <style>
+    /* 基础样式 */
+    body { 
+      margin: 0; 
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif; 
+      background: #19002D; /* Dark background */
+      color: #fff; /* White text for dark background */
+      line-height: 1.6;
+    }
+
+    /* Hero Banner */
+    .hero {
+      position: relative;
+      margin-top: 0 !important;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff; /* White text for dark background */
+      padding: 0;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      padding: 0 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; /* Ensure content is vertically centered */
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 6vw, 48px); /* Proportional scaling */
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin: 0;
+      line-height: 1.2;
+      color: #fff; /* White text */
+    }
+
+    .hero-subtitle {
+      font-size: clamp(20px, 4.5vw, 36px); /* Proportional scaling */
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin: 5px 0; /* Adjusted margin for tighter spacing */
+      line-height: 1.2;
+      color: #fff; /* White text */
+    }
+
+    .hero-description {
+      font-size: clamp(16px, 3vw, 24px); /* Proportional scaling */
+      margin: 20px 0;
+      line-height: 1.4;
+      color: #fff; /* White text */
+    }
+
+    .hero-tagline {
+      font-size: clamp(14px, 2.5vw, 20px); /* Proportional scaling */
+      margin: 8px 0; /* Adjusted margin for tighter spacing */
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.9); /* White text with transparency */
+    }
+
+    /* 导航栏 */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #480D68; /* Navigation bar color */
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff; /* White text */
+      text-decoration: none;
+      letter-spacing: 1px;
+      display: flex; /* Use flexbox to align img/svg vertically if needed */
+      align-items: center;
+    }
+
+    .logo img,
+    .logo svg {
+      display: block; /* Ensure it behaves like a block element */
+      width: 200px; /* Set desired width */
+      height: auto; /* Maintain aspect ratio */
+      vertical-align: middle; /* Vertically align with text/other elements */
+      transition: transform 0.3s ease; /* Add transition for smooth scaling */
+    }
+
+    .logo:hover img,
+    .logo:hover svg {
+      transform: scale(1.05); /* Scale up by 5% on hover */
+    }
+
+    /* Desktop Navigation Links (Default) */
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex; /* Show on desktop */
+      align-items: center;
+    }
+
+    nav li {
+      margin: 0 20px;
+    }
+
+    nav a {
+      display: block;
+      padding: 5px 0;
+      color: #fff; /* White text */
+      text-decoration: none;
+      font-size: 16px;
+      position: relative;
+    }
+
+    nav a.active {
+      font-weight: bold;
+      border-bottom: 2px solid #fff; /* White underline */
+    }
+
+    nav a:hover {
+      transform: scale(1.05); /* Scale up by 5% on hover */
+      /* Removed underline hover effect */
+    }
+
+    /* Hamburger Icon and Mobile Menu (Hidden by Default) */
+    .hamburger-icon {
+      display: none; /* Hidden on desktop */
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 100; /* Ensure it's above other content */
+    }
+
+    .hamburger-icon span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: #fff; /* White color for dark background */
+      margin-bottom: 5px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger-icon span:last-child {
+      margin-bottom: 0;
+    }
+
+    .mobile-menu {
+      display: none; /* Hidden on desktop, controlled by JS on mobile */
+      position: absolute; /* Or fixed, depending on desired behavior */
+      /* top will be set by JavaScript */
+      left: 0;
+      width: 100%;
+      background-color: #19002D; /* Match main background */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 50; /* Below hamburger, above content */
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center menu items */
+    }
+
+    .mobile-menu li {
+      width: 100%; /* Make list items take full width */
+      text-align: center; /* Center text in list items */
+      border-bottom: 1px solid #38155D; /* Darker separator */
+    }
+
+    .mobile-menu li:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a {
+      display: block; /* Make link fill the list item */
+      padding: 15px 0; /* Adjust padding */
+      text-decoration: none;
+      color: #fff; /* White text */
+      font-size: 18px; /* Adjust font size */
+      transition: background-color 0.3s ease;
+    }
+
+    .mobile-menu a:hover {
+      background-color: #38155D; /* Darker hover effect */
+    }
+
+    /* State when menu is open */
+    .mobile-menu.open {
+      display: block;
+    }
+
+    /* Mobile Styles (applied below 768px) */
+    @media (max-width: 768px) {
+      nav {
+        padding: 2px 0; /* Even further reduced vertical padding on mobile */
+      }
+
+      .hero-title {
+      }
+
+      .hero-subtitle {
+      }
+
+      .hero-description {
+      }
+
+      .hero-tagline {
+      }
+
+      .nav-container {
+        flex-direction: row; /* Keep logo and hamburger in a row */
+        justify-content: space-between; /* Space between logo and hamburger */
+        align-items: center; /* Vertically align */
+        padding: 10px 20px; /* Adjust padding */
+      }
+
+      .hero-description,
+      .hero-tagline {
+        line-height: 1.2; /* Tighter line height for mobile */
+        margin: 8px 0; /* Reduced margin for tighter spacing on mobile */
+      }
+
+      .logo {
+        margin-bottom: 0; /* Remove bottom margin from mobile logo */
+      }
+
+      nav ul {
+        display: none; /* Hide desktop links on mobile */
+      }
+
+      .hamburger-icon {
+        display: flex; /* Show hamburger on mobile */
+        align-items: center;
+      }
+
+      /* Mobile menu display is controlled by JS .open class */
+      .mobile-menu.open {
+         display: block; /* Show mobile menu when open */
+      }
+    }
+
+    /* 基础内容分区 */
+    section {
+      padding: 80px 20px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: none !important;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 28px;
+      font-weight: 500;
+      color: #fff; /* White text */
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .item {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease;
+      background: #19002D;
+    }
+
+    .item:hover {
+      transform: translateY(-5px);
+    }
+
+    .item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      position: static;
+    }
+
+    /* 弹窗（Modal） */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.95);
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90vh;
+      background: #000;
+    }
+
+    .modal-content video {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #fff;
+      font-size: 30px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-title {
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 12px;
+      margin-top: 8px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    /* 系列小导航栏美化 */
+    .series-section {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: none !important;
+      padding-top: 120px;
+    }
+    .series-nav {
+      position: relative;
+      top: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      z-index: 2;
+      justify-content: center;
+      padding: 0 20px;
+    }
+    .series-title {
+      font-size: 28px;
+      color: #fff; /* White text */
+      font-weight: bold;
+      letter-spacing: 2px;
+      opacity: 0.95;
+      user-select: none;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+      align-self: flex-end;
+      padding-bottom: 4px;
+      white-space: nowrap;
+    }
+    .series-tabs {
+      display: flex;
+      gap: 32px;
+      align-items: flex-end;
+    }
+    .series-tab {
+      background: none;
+      border: none;
+      color: #fff; /* White text */
+      font-size: 18px;
+      font-family: inherit;
+      cursor: pointer;
+      padding: 0 4px 4px 4px;
+      outline: none;
+      border-bottom: 2px solid transparent;
+      transition: border 0.2s, color 0.2s, font-weight 0.2s;
+      line-height: 1;
+      align-self: flex-end;
+    }
+    .series-tab.active {
+      color: #fff; /* White text */
+      font-weight: bold;
+      border-bottom: 2px solid #fff; /* White underline */
+    }
+    .series-content {
+      margin-top: 24px;
+      margin-top: 16px;
+    }
+
+    /* gallery 保持三列两行 */
+    .series-panel .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 30px;
+      padding: 0 20px 40px 20px;
+    }
+
+    @media (max-width: 900px) {
+      .series-nav {
+        padding: 0 20px;
+      }
+      .series-tabs {
+        gap: 18px;
+      }
+    }
+    @media (max-width: 600px) {
+      .series-nav {
+        flex-direction: column;
+        align-items: center;
+        position: static;
+        padding: 0 8px;
+        margin-bottom: 20px;
+      }
+      .series-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+        align-self: center; /* Center title horizontally on mobile */
+      }
+      .series-tabs {
+        gap: 12px;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 8px;
+        justify-content: center;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .series-tab {
+        font-size: 14px; /* Smaller font size for mobile tabs */
+      }
+
+      /* 视频内容区两列 */
+      .series-panel .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: none;
+        gap: 16px;
+        padding: 0 8px 24px 8px;
+      }
+      .item {
+        position: relative;
+      }
+      .item::before {
+        content: '';
+        display: block;
+        padding-top: 56.25%; /* 16:9 */
+      }
+      .item img {
+        position: absolute;
+        top: -2.5%;
+        left: -2.5%;
+        width: 105%;
+        height: 105%;
+        object-fit: cover;
+      }
+
+      /* 关于我们板块字体缩小 */
+      .about-title { font-size: 22px; padding-bottom: 6px; }
+      .about-cn, .about-en { font-size: 8px; line-height: 1.5; text-align: left; margin-bottom: 2.5em; }
+      .about-section { margin: 32px 0; }
+    }
+
+    .more-item { display: none; }
+    .gallery.show-more .more-item { display: block; }
+    .more-btn {
+      display: block;
+      margin: 24px auto 0 auto;
+      padding: 8px 32px;
+      background: #fff;
+      color: #111; /* Keep dark text on white button */
+      border: 1px solid #bbb;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .more-btn:hover {
+      background: #38155D; /* Darker hover */
+      color: #fff; /* White text on hover */
+    }
+
+    .about-cn, .about-en {
+      color: #fff; /* White text */
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: left;
+      margin-bottom: 2.5em;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px; /* Add left padding */
+      padding-right: 20px; /* Add right padding */
+    }
+    .about-divider {
+    }
+
+    .shader-bg {
+      position: fixed;
+      z-index: 0;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .shader-bg iframe {
+      width: 200vw;
+      height: 200vh;
+      border: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .shader-bg-pc { display: block; }
+    .shader-bg-mobile { display: none; }
+    @media (max-width: 900px) {
+      .shader-bg-pc { display: none; }
+      .shader-bg-mobile { display: block; }
+    }
+    body > *:not(.shader-bg) {
+      position: relative;
+      z-index: 1;
+    }
+    .shader-bg-mobile-video { display: none; }
+    @media (max-width: 900px) {
+      .shader-bg-mobile-video {
+        display: block;
+        position: fixed;
+        z-index: 0;
+        left: 0; top: 0; width: 100vw; height: 100vh;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .shader-bg-mobile-video video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+      }
+      .shader-bg-mobile { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shader-bg">
+    <iframe class="shader-bg-pc" src="./UltraWide_files/customize.html" frameborder="0" scrolling="no"></iframe>
+    <iframe class="shader-bg-mobile" src="./UltraWide_files/customize(1).html" frameborder="0" scrolling="no"></iframe>
+    <div class="shader-bg-mobile-video">
+      <video autoplay="" loop="" muted="" playsinline="">
+        <source src="assets/videos/mobile-bg.mp4" type="video/mp4">
+        您的浏览器不支持 video 标签。
+      </video>
+    </div>
+  </div>
+  <nav>
+    <div class="nav-container">
+      <a href="http://ultrawide.cn/#home" class="logo">
+        <img src="./UltraWide_files/LOGO.png" alt="UltraWide Logo">
+      </a>
+      <ul>
+        <li><a href="http://ultrawide.cn/#home">首页</a></li>
+        <li><a href="http://ultrawide.cn/#works">作品</a></li>
+        <li><a href="http://ultrawide.cn/#about">关于我们</a></li>
+        <li><a href="http://ultrawide.cn/#contact">联系我们</a></li>
+      </ul>
+      <button class="hamburger-icon" aria-label="Toggle navigation menu">
+        <!--?xml version="1.0" standalone="no"?--><svg t="1747553310917" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3890" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25"><path d="M66.488889 211.781818h891.022222c28.198788 0 50.980202-22.238384 50.980202-49.648485 0-27.397172-22.768485-49.648485-50.980202-49.648485H66.488889C38.341818 112.484848 15.508687 134.723232 15.508687 162.133333s22.833131 49.648485 50.980202 49.648485z m891.009293 248.242424H66.488889C38.277172 460.024242 15.508687 482.262626 15.508687 509.672727s22.768485 49.648485 50.980202 49.648485h891.022222c28.198788 0 50.980202-22.238384 50.980202-49.648485-0.012929-27.410101-22.923636-49.648485-50.993131-49.648485z m0 351.63798H66.488889c-28.134141 0-50.980202 22.238384-50.980202 49.648485s22.833131 49.648485 50.980202 49.648485h891.022222c28.198788 0 50.980202-22.238384 50.980202-49.648485-0.012929-27.397172-22.781414-49.648485-50.993131-49.648485z m0 0" p-id="3891"></path></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" style="top: 107px;">
+      <ul>
+        <li><a href="http://ultrawide.cn/#home">首页</a></li>
+        <li><a href="http://ultrawide.cn/#works">作品</a></li>
+        <li><a href="http://ultrawide.cn/#about">关于我们</a></li>
+        <li><a href="http://ultrawide.cn/#contact">联系我们</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <section class="hero" id="home" style="margin-top: 107px;">
+    <video class="hero-video" autoplay="" loop="" muted="" playsinline="">
+      <source src="assets/videos/hero-bg.mp4" type="video/mp4">
+      您的浏览器不支持 video 标签。
+    </video>
+    <div class="hero-content">
+      <img src="./UltraWide_files/bannercontent.png" alt="Banner Content" style="max-width: 80%; height: auto; display: block; margin: 0 auto;">
+    </div>
+  </section>
+
+  <!-- 视频系列切换区 -->
+  <section class="series-section" id="works">
+    <div class="series-nav">
+      <div class="series-tabs">
+        <button class="series-tab active" data-series="tvc">TVC</button>
+        <button class="series-tab" data-series="microfilm">微电影与专题片</button>
+        <button class="series-tab" data-series="interviews">访谈系列</button>
+        <button class="series-tab" data-series="antifraud">反诈系列</button>
+      </div>
+    </div>
+    <div class="series-content">
+      <div class="series-panel" id="series-tvc">
+        <div class="gallery" id="tvc-gallery">
+          <div class="item" data-video="assets/videos/tvc1.mp4" data-title="清华大学2025新年祝福视频"><img src="./UltraWide_files/tvc1.jpg" alt="TVC1"></div>
+          <div class="item" data-video="assets/videos/tvc2.mp4" data-title="清华大学社会科学学院MIA招生宣传片-We Together, Hi Future"><img src="./UltraWide_files/tvc2.jpg" alt="TVC2"></div>
+          <div class="item" data-video="assets/videos/tvc3.mp4" data-title="清华大学体育代表队成立70周年宣传片-70年有我"><img src="./UltraWide_files/tvc3.jpg" alt="TVC3"></div>
+          <div class="item" data-video="assets/videos/tvc4.mp4" data-title="清华大学五四青年节105周年主题视频-清春"><img src="./UltraWide_files/tvc4.jpg" alt="TVC4"></div>
+          <div class="item" data-video="assets/videos/tvc5.mp4" data-title="清华大学五四青年节106周年主题视频-回声"><img src="./UltraWide_files/tvc5.jpg" alt="TVC5"></div>
+          <div class="item" data-video="assets/videos/tvc6.mp4" data-title="清华大学智汇清年论坛先导片"><img src="./UltraWide_files/tvc6.jpg" alt="TVC6"></div>
+        </div>
+        <button class="more-btn" id="tvc-more-btn" style="display:none;">More</button>
+      </div>
+      <div class="series-panel" id="series-microfilm" style="display:none;">
+        <div class="gallery" id="microfilm-gallery">
+          <div class="item" data-video="assets/videos/micro1.mp4" data-title="2022新闻学院一二·九先导片"><img src="./UltraWide_files/micro1.jpg" alt="微电影1"></div>
+          <div class="item" data-video="assets/videos/micro2.mp4" data-title="2024北大城市与环境学院一二·九宣传片-什么是青春"><img src="./UltraWide_files/micro2.jpg" alt="微电影2"></div>
+          <div class="item" data-video="assets/videos/micro3.mp4" data-title="清华大学2024毕业MV-身边"><img src="./UltraWide_files/micro3.jpg" alt="微电影3"></div>
+          <div class="item" data-video="assets/videos/micro4.mp4" data-title="清华大学2024学术道德微电影-一念之间"><img src="./UltraWide_files/micro4.jpg" alt="微电影4"></div>
+          <div class="item" data-video="assets/videos/micro5.mp4" data-title="清华大学交叉信息学院原创歌曲-人机迷雾MV"><img src="./UltraWide_files/micro5.jpg" alt="微电影5"></div>
+          <div class="item" data-video="assets/videos/micro6.mp4" data-title="清华大学拉美中心2024减贫营宣传片"><img src="./UltraWide_files/micro6.jpg" alt="微电影6"></div>
+          <div class="item more-item" data-video="assets/videos/micro7.mp4" data-title="清华大学校园讲解视频-相约清华"><img src="./UltraWide_files/micro7.jpg" alt="微电影7"></div>
+          <div class="item more-item" data-video="assets/videos/micro8.mp4" data-title="全球胜任力专题调研课程赴荷比卢支队纪录片-2023"><img src="./UltraWide_files/micro8.jpg" alt="微电影8"></div>
+        </div>
+        <button class="more-btn" id="microfilm-more-btn" style="display: block;">More</button>
+      </div>
+      <div class="series-panel" id="series-interviews" style="display:none;">
+        <div class="gallery" id="interviews-gallery">
+          <div class="item" data-video="assets/videos/interview1.mp4" data-title="2023-2024学年度清华大学研究生先进集体宣传片"><img src="./UltraWide_files/interview1.jpg" alt="访谈1"></div>
+          <div class="item" data-video="assets/videos/interview2.mp4" data-title="清华大学创新清华对话科学系列论坛-刘嘉教授专访"><img src="./UltraWide_files/interview2.jpg" alt="访谈2"></div>
+          <div class="item" data-video="assets/videos/interview3.mp4" data-title="清华大学创新清华对话科学系列论坛-王笑楠副教授专访"><img src="./UltraWide_files/interview3.jpg" alt="访谈3"></div>
+          <div class="item" data-video="assets/videos/interview4.mp4" data-title="清华大学创新清华对话科学系列论坛-先导片"><img src="./UltraWide_files/interview4.jpg" alt="访谈4"></div>
+          <div class="item" data-video="assets/videos/interview5.mp4" data-title="清华大学创新清华对话科学系列论坛-张钹院士专访"><img src="./UltraWide_files/interview5.jpg" alt="访谈5"></div>
+        </div>
+        <button class="more-btn" id="interviews-more-btn" style="display:none;">More</button>
+      </div>
+      <div class="series-panel" id="series-antifraud" style="display:none;">
+        <div class="gallery" id="antifraud-gallery">
+          <div class="item" data-video="assets/videos/antifraud1.mp4" data-title="清华大学反诈专题视频-爱情刺客"><img src="./UltraWide_files/antifraud1.jpg" alt="反诈1"></div>
+          <div class="item" data-video="assets/videos/antifraud2.mp4" data-title="清华大学反诈专题视频-养老刺客"><img src="./UltraWide_files/antifraud2.jpg" alt="反诈2"></div>
+          <div class="item" data-video="assets/videos/antifraud3.mp4" data-title="清华大学反诈专题视频-用电影的方式打开反诈I"><img src="./UltraWide_files/antifraud3.jpg" alt="反诈3"></div>
+          <div class="item" data-video="assets/videos/antifraud4.mp4" data-title="清华大学反诈专题视频-用电影的方式打开反诈II"><img src="./UltraWide_files/antifraud4.jpg" alt="反诈4"></div>
+          <div class="item" data-video="assets/videos/antifraud5.mp4" data-title="清华大学反诈专题视频-用电影的方式打开反诈III"><img src="./UltraWide_files/antifraud5.jpg" alt="反诈5"></div>
+          <div class="item" data-video="assets/videos/antifraud6.mp4" data-title="清华大学反诈专题视频-招聘刺客"><img src="./UltraWide_files/antifraud6.jpg" alt="反诈6"></div>
+          <div class="item more-item" data-video="assets/videos/antifraud7.mp4" data-title="用三国演义的方式打开反诈"><img src="./UltraWide_files/antifraud7.jpg" alt="反诈7"></div>
+        </div>
+        <button class="more-btn" id="antifraud-more-btn" style="display: block;">More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于我们板块 -->
+  <section class="about-section" id="about">
+    <h2 class="about-title">关于我们</h2>
+    <div class="about-cn">
+      <strong>清青超广角影视（UltraWide Media Studio）</strong>成立于 2024 年 5 月，诞生于清华园的创新沃土，以 "超广角・致青年" 为精神内核，致力于打造 "以硬核科技为骨，以人文情怀为魂" 的新型影像内容。我们秉持 "用青年视角解构宏大叙事，以帧率精度传递时代温度" 的使命，光影足迹从清华学堂延伸至中拉减贫营。<br><br>
+      自成立以来，我们已构建起覆盖 6 大领域、与 20 + 顶级机构的深度合作网络。作品相继登陆人民日报、公安部刑侦局、国家反诈中心、清华大学等平台，打造出《三国反诈》《回声》《清春》等破圈佳作，单期作品最高播放量突破 5000 万次。<br><br>
+      展望未来，我们将以 "自强不息" 的精神继续深耕影像领域，让青年影像成为跨越山海、对话世界的文化纽带。
+    </div>
+    <div class="about-en">
+      <strong>UltraWide Media Studio</strong>, founded in May 2024, was born from the innovative environment of Tsinghua University. With the core spirit of "UltraWide: To the Youth," we are dedicated to creating a new type of visual content that is "rooted in hard-core technology and soulful with humanistic care." Upholding the mission of "deconstructing grand narratives from a youthful perspective and conveying the pulse of the era with frame-rate precision," our visual footprint extends from Tsinghua classrooms to the China-Latin America Poverty Reduction Camp.<br><br>
+      Since our establishment, we have built a deep collaborative network covering 6 major fields and partnering with over 20 top institutions. Our works have been featured on platforms such as People's Daily, Criminal Investigation Department of the Ministry of Public Security, National Anti-Fraud Center, and Tsinghua University, creating viral hits like "Three Kingdoms Anti-Fraud," "Echo," and "Qingchun," with the highest single episode view count exceeding 50 million.<br><br>
+      Looking ahead, we will continue to cultivate the field of visual media with the spirit of "Self-Improvement," making youth visual content a cultural bridge that crosses mountains and seas and dialogues with the world.
+    </div>
+  </section>
+
+  <!-- 弹窗容器 -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="modal-close" id="modal-close">×</div>
+      <div class="modal-title"></div>
+      <!-- 动态插入 video 或 img -->
+    </div>
+  </div>
+
+  <script>
+    // 绑定点击事件，打开弹窗并播放视频
+    document.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', () => {
+        const videoSrc = item.getAttribute('data-video');
+        const videoTitle = item.getAttribute('data-title') || '';
+        const modal = document.getElementById('modal');
+        const content = modal.querySelector('.modal-content');
+        content.querySelector('.modal-title')?.remove();
+        content.querySelector('video, img')?.remove();
+        if (videoTitle) {
+          const titleDiv = document.createElement('div');
+          titleDiv.className = 'modal-title';
+          titleDiv.textContent = videoTitle;
+          content.appendChild(titleDiv);
+        }
+        const video = document.createElement('video');
+        video.src = videoSrc;
+        video.controls = true;
+        video.autoplay = true;
+        content.appendChild(video);
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // 防止背景滚动
+      });
+    });
+
+    // 关闭弹窗
+    document.getElementById('modal-close').addEventListener('click', () => {
+      const modal = document.getElementById('modal');
+      modal.style.display = 'none';
+      modal.querySelector('video')?.pause();
+      document.body.style.overflow = ''; // 恢复背景滚动
+    });
+
+    // 点击遮罩区也可关闭
+    document.getElementById('modal').addEventListener('click', e => {
+      if (e.target === e.currentTarget) document.getElementById('modal-close').click();
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const section = document.querySelector(this.getAttribute('href'));
+        section.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // 系列小导航栏交互
+    document.querySelectorAll('.series-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        // 切换高亮
+        document.querySelectorAll('.series-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        // 切换内容
+        const series = this.getAttribute('data-series');
+        document.querySelectorAll('.series-panel').forEach(panel => {
+          panel.style.display = 'none';
+        });
+        document.getElementById('series-' + series).style.display = 'block';
+      });
+    });
+
+    function setupMoreBtn(galleryId, btnId) {
+      const gallery = document.getElementById(galleryId);
+      const btn = document.getElementById(btnId);
+      if (!gallery || !btn) return;
+      // 判断是否超过6个视频
+      const items = gallery.querySelectorAll('.item');
+      if (items.length <= 6) {
+        btn.style.display = 'none';
+        // 保证所有more-item都隐藏
+        gallery.querySelectorAll('.more-item').forEach(el => el.style.display = 'none');
+      } else {
+        btn.style.display = 'block';
+        // 前6个不加more-item，后面加more-item类
+        items.forEach((el, idx) => {
+          if (idx < 6) {
+            el.classList.remove('more-item');
+          } else {
+            el.classList.add('more-item');
+          }
+        });
+        btn.addEventListener('click', function() {
+          gallery.classList.toggle('show-more');
+          if (gallery.classList.contains('show-more')) {
+            btn.textContent = '收起';
+          } else {
+            btn.textContent = 'More';
+          }
+        });
+      }
+    }
+
+    setupMoreBtn('tvc-gallery', 'tvc-more-btn');
+    setupMoreBtn('microfilm-gallery', 'microfilm-more-btn');
+    setupMoreBtn('interviews-gallery', 'interviews-more-btn');
+    setupMoreBtn('antifraud-gallery', 'antifraud-more-btn');
+
+    // Handle swipe gestures for series content
+    const seriesContent = document.querySelector('.series-content');
+    const seriesTabs = document.querySelectorAll('.series-tab');
+    let touchStartX = 0;
+
+    seriesContent.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    });
+
+    seriesContent.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const swipeThreshold = 50; // Minimum horizontal distance for a swipe
+      const distance = touchEndX - touchStartX;
+
+      if (Math.abs(distance) > swipeThreshold) {
+        // Determine swipe direction
+        const direction = distance > 0 ? 'right' : 'left';
+
+        // Find the currently active tab
+        const activeTab = document.querySelector('.series-tab.active');
+        if (!activeTab) return;
+
+        // Find the index of the active tab
+        let activeIndex = -1;
+        seriesTabs.forEach((tab, index) => {
+          if (tab.classList.contains('active')) {
+            activeIndex = index;
+          }
+        });
+
+        if (activeIndex === -1) return;
+
+        // Calculate the index of the next/previous tab
+        let nextIndex = activeIndex;
+        if (direction === 'left') {
+          nextIndex = (activeIndex + 1) % seriesTabs.length;
+        } else if (direction === 'right') {
+          nextIndex = (activeIndex - 1 + seriesTabs.length) % seriesTabs.length;
+        }
+
+        // Trigger click on the next/previous tab
+        if (nextIndex !== activeIndex) {
+          seriesTabs[nextIndex].click();
+          // Prevent default to avoid potential scrolling or other touch behaviors
+          e.preventDefault();
+        }
+      }
+    });
+    // Prevent vertical scrolling issues when swiping horizontally
+    seriesContent.addEventListener('touchmove', (e) => {
+      // Check if the primary touch is moving significantly horizontally
+      const touch = e.touches[0];
+      const deltaX = Math.abs(touch.clientX - touchStartX);
+      const deltaY = Math.abs(touch.clientY - touch.clientY);
+
+      if (deltaX > deltaY && deltaX > 10) { // Require a minimum horizontal movement
+        e.preventDefault();
+      }
+    }, { passive: false });
+    // Note: passive: false is used here to allow preventDefault
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburgerIcon = document.querySelector('.hamburger-icon');
+      const mobileMenu = document.querySelector('.mobile-menu');
+
+      if (hamburgerIcon && mobileMenu) {
+        hamburgerIcon.addEventListener('click', () => {
+          mobileMenu.classList.toggle('open');
+          // Optional: Add class to hamburger icon for animation
+          // hamburgerIcon.classList.toggle('close');
+        });
+
+        // Optional: Close menu when a link is clicked (for single page sites)
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            // Optional: Remove class from hamburger icon
+            // hamburgerIcon.classList.remove('close');
+          });
+        });
+      }
+    });
+  </script>
+
+  <script>
+    function setHeroMargin() {
+      const navHeight = document.querySelector('nav').offsetHeight;
+      const heroSection = document.querySelector('.hero');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      if (heroSection) {
+        heroSection.style.marginTop = navHeight + 'px';
+      }
+      if (mobileMenu) {
+        mobileMenu.style.top = navHeight + 'px';
+      }
+    }
+
+    // 在DOM加载完成后和窗口大小改变时执行
+    document.addEventListener('DOMContentLoaded', setHeroMargin);
+    window.addEventListener('resize', setHeroMargin);
+
+    // 如果汉堡包菜单会改变导航栏高度，在点击时重新计算（可能需要延迟以等待动画完成）
+    const hamburgerIcon = document.querySelector('.hamburger-icon');
+    if (hamburgerIcon) {
+      hamburgerIcon.addEventListener('click', () => {
+        // 延迟计算以等待菜单高度变化完成
+        setTimeout(setHeroMargin, 300); // 300ms 延迟，可根据需要调整
+      });
+    }
+  </script>
+
+ </body></html>
