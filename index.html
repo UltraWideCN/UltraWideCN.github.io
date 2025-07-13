@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<!-- saved from url=(0020)http://ultrawide.cn/ -->
-<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<!-- saved from url=(0020)https://ultrawidecn.github.io/ -->
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UltraWide</title>
   <style>
     /* 基础样式 */
-    body { 
-      margin: 0; 
-      font-family: "PingFang SC", "Microsoft YaHei", sans-serif; 
-      background: #19002D; /* Dark background */
-      color: #fff; /* White text for dark background */
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #19002D;
+      /* Dark background */
+      color: #fff;
+      /* White text for dark background */
       line-height: 1.6;
     }
 
@@ -24,7 +29,8 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: #fff; /* White text for dark background */
+      color: #fff;
+      /* White text for dark background */
       padding: 0;
     }
 
@@ -46,39 +52,313 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center; /* Ensure content is vertically centered */
+      justify-content: center;
+      /* 添加动画效果 */
+      animation: fadeInUp 1.2s ease-out forwards;
+      opacity: 0;
+      /* 初始透明 */
+    }
+
+    /* 添加淡入上浮动画 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate(-50%, 40%);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    /* 添加延迟效果 */
+    @media (min-width: 769px) {
+      .hero-content {
+        animation-delay: 0.8s;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content {
+        animation-delay: 0.4s;
+      }
     }
 
     .hero-title {
-      font-size: clamp(28px, 6vw, 48px); /* Proportional scaling */
+      font-size: clamp(28px, 6vw, 48px);
+      /* Proportional scaling */
       font-weight: bold;
       letter-spacing: 2px;
       margin: 0;
       line-height: 1.2;
-      color: #fff; /* White text */
+      color: #fff;
+      /* White text */
     }
 
     .hero-subtitle {
-      font-size: clamp(20px, 4.5vw, 36px); /* Proportional scaling */
+      font-size: clamp(20px, 4.5vw, 36px);
+      /* Proportional scaling */
       font-weight: 500;
       letter-spacing: 1px;
-      margin: 5px 0; /* Adjusted margin for tighter spacing */
+      margin: 5px 0;
+      /* Adjusted margin for tighter spacing */
       line-height: 1.2;
-      color: #fff; /* White text */
+      color: #fff;
+      /* White text */
     }
 
     .hero-description {
-      font-size: clamp(16px, 3vw, 24px); /* Proportional scaling */
+      font-size: clamp(16px, 3vw, 24px);
+      /* Proportional scaling */
       margin: 20px 0;
       line-height: 1.4;
-      color: #fff; /* White text */
+      color: #fff;
+      /* White text */
     }
 
     .hero-tagline {
-      font-size: clamp(14px, 2.5vw, 20px); /* Proportional scaling */
-      margin: 8px 0; /* Adjusted margin for tighter spacing */
+      font-size: clamp(14px, 2.5vw, 20px);
+      /* Proportional scaling */
+      margin: 8px 0;
+      /* Adjusted margin for tighter spacing */
       line-height: 1.4;
-      color: rgba(255, 255, 255, 0.9); /* White text with transparency */
+      color: rgba(255, 255, 255, 0.9);
+      /* White text with transparency */
+    }
+
+    /* 联系我们板块 */
+    .contact-section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-section h2 {
+      font-size: 36px;
+      font-weight: 500;
+      margin-bottom: 60px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .contact-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #8d7dca, #606080);
+      border-radius: 2px;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 60px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+      padding: 30px;
+      background: rgba(72, 13, 104, 0.4);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(141, 125, 202, 0.3);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .contact-info:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(141, 125, 202, 0.2);
+    }
+
+    .contact-title {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 30px;
+      color: #fff;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .contact-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #8d7dca, #606080);
+      border-radius: 2px;
+    }
+
+    .contact-details {
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .tel-number {
+      display: block;
+      margin: 20px 0;
+      font-size: 22px;
+      font-weight: 500;
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    .tel-number:hover {
+      color: #8d7dca;
+    }
+
+    .qrcode-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .qrcode-placeholder {
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(135deg, #8d7dca, #480D68);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .qrcode-placeholder::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.1) 50%,
+          rgba(255, 255, 255, 0) 100%);
+      transform: rotate(45deg);
+      animation: shine 2s infinite;
+    }
+
+    .qrcode-placeholder span {
+      font-size: 16px;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      z-index: 1;
+    }
+
+    .qrcode-label {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .contact-note {
+      margin-top: 40px;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .contact-note strong {
+      color: #8d7dca;
+      font-weight: 500;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: rotate(45deg) translateX(-100%);
+      }
+
+      100% {
+        transform: rotate(45deg) translateX(100%);
+      }
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .contact-container {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .contact-info {
+        min-width: 100%;
+      }
+
+      .contact-section h2 {
+        font-size: 28px;
+      }
+
+      .contact-title {
+        font-size: 22px;
+      }
+
+      .tel-number {
+        font-size: 18px;
+      }
+
+      .qrcode-placeholder {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    /* 背景特效 */
+    .shader-bg {
+      position: fixed;
+      z-index: 0;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .shader-bg iframe {
+      width: 200vw;
+      height: 200vh;
+      border: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* 页脚样式 */
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+      border-top: 1px solid rgba(141, 125, 202, 0.2);
+      margin-top: 60px;
     }
 
     /* 导航栏 */
@@ -87,9 +367,10 @@
       top: 0;
       left: 0;
       right: 0;
-      background: #480D68; /* Navigation bar color */
+      background: #480D68;
+      /* Navigation bar color */
       padding: 15px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
       z-index: 1000;
     }
 
@@ -105,25 +386,33 @@
     .logo {
       font-size: 24px;
       font-weight: bold;
-      color: #fff; /* White text */
+      color: #fff;
+      /* White text */
       text-decoration: none;
       letter-spacing: 1px;
-      display: flex; /* Use flexbox to align img/svg vertically if needed */
+      display: flex;
+      /* Use flexbox to align img/svg vertically if needed */
       align-items: center;
     }
 
     .logo img,
     .logo svg {
-      display: block; /* Ensure it behaves like a block element */
-      width: 200px; /* Set desired width */
-      height: auto; /* Maintain aspect ratio */
-      vertical-align: middle; /* Vertically align with text/other elements */
-      transition: transform 0.3s ease; /* Add transition for smooth scaling */
+      display: block;
+      /* Ensure it behaves like a block element */
+      width: 200px;
+      /* Set desired width */
+      height: auto;
+      /* Maintain aspect ratio */
+      vertical-align: middle;
+      /* Vertically align with text/other elements */
+      transition: transform 0.3s ease;
+      /* Add transition for smooth scaling */
     }
 
     .logo:hover img,
     .logo:hover svg {
-      transform: scale(1.05); /* Scale up by 5% on hover */
+      transform: scale(1.05);
+      /* Scale up by 5% on hover */
     }
 
     /* Desktop Navigation Links (Default) */
@@ -131,7 +420,8 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex; /* Show on desktop */
+      display: flex;
+      /* Show on desktop */
       align-items: center;
     }
 
@@ -142,7 +432,8 @@
     nav a {
       display: block;
       padding: 5px 0;
-      color: #fff; /* White text */
+      color: #fff;
+      /* White text */
       text-decoration: none;
       font-size: 16px;
       position: relative;
@@ -150,29 +441,34 @@
 
     nav a.active {
       font-weight: bold;
-      border-bottom: 2px solid #fff; /* White underline */
+      border-bottom: 2px solid #fff;
+      /* White underline */
     }
 
     nav a:hover {
-      transform: scale(1.05); /* Scale up by 5% on hover */
+      transform: scale(1.05);
+      /* Scale up by 5% on hover */
       /* Removed underline hover effect */
     }
 
     /* Hamburger Icon and Mobile Menu (Hidden by Default) */
     .hamburger-icon {
-      display: none; /* Hidden on desktop */
+      display: none;
+      /* Hidden on desktop */
       background: none;
       border: none;
       cursor: pointer;
       padding: 10px;
-      z-index: 100; /* Ensure it's above other content */
+      z-index: 100;
+      /* Ensure it's above other content */
     }
 
     .hamburger-icon span {
       display: block;
       width: 25px;
       height: 3px;
-      background-color: #fff; /* White color for dark background */
+      background-color: #fff;
+      /* White color for dark background */
       margin-bottom: 5px;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
@@ -182,14 +478,18 @@
     }
 
     .mobile-menu {
-      display: none; /* Hidden on desktop, controlled by JS on mobile */
-      position: absolute; /* Or fixed, depending on desired behavior */
+      display: none;
+      /* Hidden on desktop, controlled by JS on mobile */
+      position: absolute;
+      /* Or fixed, depending on desired behavior */
       /* top will be set by JavaScript */
       left: 0;
       width: 100%;
-      background-color: #19002D; /* Match main background */
+      background-color: #19002D;
+      /* Match main background */
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      z-index: 50; /* Below hamburger, above content */
+      z-index: 50;
+      /* Below hamburger, above content */
     }
 
     .mobile-menu ul {
@@ -198,13 +498,17 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      align-items: center; /* Center menu items */
+      align-items: center;
+      /* Center menu items */
     }
 
     .mobile-menu li {
-      width: 100%; /* Make list items take full width */
-      text-align: center; /* Center text in list items */
-      border-bottom: 1px solid #38155D; /* Darker separator */
+      width: 100%;
+      /* Make list items take full width */
+      text-align: center;
+      /* Center text in list items */
+      border-bottom: 1px solid #38155D;
+      /* Darker separator */
     }
 
     .mobile-menu li:last-child {
@@ -212,16 +516,21 @@
     }
 
     .mobile-menu a {
-      display: block; /* Make link fill the list item */
-      padding: 15px 0; /* Adjust padding */
+      display: block;
+      /* Make link fill the list item */
+      padding: 15px 0;
+      /* Adjust padding */
       text-decoration: none;
-      color: #fff; /* White text */
-      font-size: 18px; /* Adjust font size */
+      color: #fff;
+      /* White text */
+      font-size: 18px;
+      /* Adjust font size */
       transition: background-color 0.3s ease;
     }
 
     .mobile-menu a:hover {
-      background-color: #38155D; /* Darker hover effect */
+      background-color: #38155D;
+      /* Darker hover effect */
     }
 
     /* State when menu is open */
@@ -232,50 +541,57 @@
     /* Mobile Styles (applied below 768px) */
     @media (max-width: 768px) {
       nav {
-        padding: 2px 0; /* Even further reduced vertical padding on mobile */
+        padding: 2px 0;
+        /* Even further reduced vertical padding on mobile */
       }
 
-      .hero-title {
-      }
+      .hero-title {}
 
-      .hero-subtitle {
-      }
+      .hero-subtitle {}
 
-      .hero-description {
-      }
+      .hero-description {}
 
-      .hero-tagline {
-      }
+      .hero-tagline {}
 
       .nav-container {
-        flex-direction: row; /* Keep logo and hamburger in a row */
-        justify-content: space-between; /* Space between logo and hamburger */
-        align-items: center; /* Vertically align */
-        padding: 10px 20px; /* Adjust padding */
+        flex-direction: row;
+        /* Keep logo and hamburger in a row */
+        justify-content: space-between;
+        /* Space between logo and hamburger */
+        align-items: center;
+        /* Vertically align */
+        padding: 10px 20px;
+        /* Adjust padding */
       }
 
       .hero-description,
       .hero-tagline {
-        line-height: 1.2; /* Tighter line height for mobile */
-        margin: 8px 0; /* Reduced margin for tighter spacing on mobile */
+        line-height: 1.2;
+        /* Tighter line height for mobile */
+        margin: 8px 0;
+        /* Reduced margin for tighter spacing on mobile */
       }
 
       .logo {
-        margin-bottom: 0; /* Remove bottom margin from mobile logo */
+        margin-bottom: 0;
+        /* Remove bottom margin from mobile logo */
       }
 
       nav ul {
-        display: none; /* Hide desktop links on mobile */
+        display: none;
+        /* Hide desktop links on mobile */
       }
 
       .hamburger-icon {
-        display: flex; /* Show hamburger on mobile */
+        display: flex;
+        /* Show hamburger on mobile */
         align-items: center;
       }
 
       /* Mobile menu display is controlled by JS .open class */
       .mobile-menu.open {
-         display: block; /* Show mobile menu when open */
+        display: block;
+        /* Show mobile menu when open */
       }
     }
 
@@ -292,7 +608,8 @@
       margin-bottom: 40px;
       font-size: 28px;
       font-weight: 500;
-      color: #fff; /* White text */
+      color: #fff;
+      /* White text */
     }
 
     .gallery {
@@ -307,7 +624,7 @@
       cursor: pointer;
       overflow: hidden;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
       transition: transform 0.3s ease;
       background: #19002D;
     }
@@ -324,15 +641,23 @@
       position: static;
     }
 
+    .qrcode-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      /* 图片完整显示在容器内 */
+    }
+
     /* 弹窗（Modal） */
     .modal {
-      display: none; /* Hidden by default */
+      display: none;
+      /* Hidden by default */
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0,0,0,0.95);
+      background: rgba(0, 0, 0, 0.95);
       align-items: center;
       justify-content: center;
       z-index: 2000;
@@ -373,7 +698,7 @@
       margin-bottom: 12px;
       margin-top: 8px;
       letter-spacing: 1px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     }
 
     /* 系列小导航栏美化 */
@@ -384,6 +709,7 @@
       background: none !important;
       padding-top: 120px;
     }
+
     .series-nav {
       position: relative;
       top: 0;
@@ -394,9 +720,11 @@
       justify-content: center;
       padding: 0 20px;
     }
+
     .series-title {
       font-size: 28px;
-      color: #fff; /* White text */
+      color: #fff;
+      /* White text */
       font-weight: bold;
       letter-spacing: 2px;
       opacity: 0.95;
@@ -408,15 +736,18 @@
       padding-bottom: 4px;
       white-space: nowrap;
     }
+
     .series-tabs {
       display: flex;
       gap: 32px;
       align-items: flex-end;
     }
+
     .series-tab {
       background: none;
       border: none;
-      color: #fff; /* White text */
+      color: #fff;
+      /* White text */
       font-size: 18px;
       font-family: inherit;
       cursor: pointer;
@@ -427,11 +758,15 @@
       line-height: 1;
       align-self: flex-end;
     }
+
     .series-tab.active {
-      color: #fff; /* White text */
+      color: #fff;
+      /* White text */
       font-weight: bold;
-      border-bottom: 2px solid #fff; /* White underline */
+      border-bottom: 2px solid #fff;
+      /* White underline */
     }
+
     .series-content {
       margin-top: 24px;
       margin-top: 16px;
@@ -450,10 +785,12 @@
       .series-nav {
         padding: 0 20px;
       }
+
       .series-tabs {
         gap: 18px;
       }
     }
+
     @media (max-width: 600px) {
       .series-nav {
         flex-direction: column;
@@ -462,26 +799,32 @@
         padding: 0 8px;
         margin-bottom: 20px;
       }
+
       .series-title {
         font-size: 18px;
         margin-bottom: 10px;
-        align-self: center; /* Center title horizontally on mobile */
+        align-self: center;
+        /* Center title horizontally on mobile */
       }
+
       .series-tabs {
         gap: 12px;
         overflow-x: auto;
         white-space: nowrap;
         padding-bottom: 8px;
         justify-content: center;
+
         &::-webkit-scrollbar {
           display: none;
         }
+
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
 
       .series-tab {
-        font-size: 14px; /* Smaller font size for mobile tabs */
+        font-size: 14px;
+        /* Smaller font size for mobile tabs */
       }
 
       /* 视频内容区两列 */
@@ -491,14 +834,18 @@
         gap: 16px;
         padding: 0 8px 24px 8px;
       }
+
       .item {
         position: relative;
       }
+
       .item::before {
         content: '';
         display: block;
-        padding-top: 56.25%; /* 16:9 */
+        padding-top: 56.25%;
+        /* 16:9 */
       }
+
       .item img {
         position: absolute;
         top: -2.5%;
@@ -509,32 +856,57 @@
       }
 
       /* 关于我们板块字体缩小 */
-      .about-title { font-size: 22px; padding-bottom: 6px; }
-      .about-cn, .about-en { font-size: 8px; line-height: 1.5; text-align: left; margin-bottom: 2.5em; }
-      .about-section { margin: 32px 0; }
+      .about-title {
+        font-size: 22px;
+        padding-bottom: 6px;
+      }
+
+      .about-cn,
+      .about-en {
+        font-size: 8px;
+        line-height: 1.5;
+        text-align: left;
+        margin-bottom: 2.5em;
+      }
+
+      .about-section {
+        margin: 32px 0;
+      }
     }
 
-    .more-item { display: none; }
-    .gallery.show-more .more-item { display: block; }
+    .more-item {
+      display: none;
+    }
+
+    .gallery.show-more .more-item {
+      display: block;
+    }
+
     .more-btn {
       display: block;
       margin: 24px auto 0 auto;
       padding: 8px 32px;
       background: #fff;
-      color: #111; /* Keep dark text on white button */
+      color: #111;
+      /* Keep dark text on white button */
       border: 1px solid #bbb;
       border-radius: 20px;
       font-size: 16px;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
     }
+
     .more-btn:hover {
-      background: #38155D; /* Darker hover */
-      color: #fff; /* White text on hover */
+      background: #38155D;
+      /* Darker hover */
+      color: #fff;
+      /* White text on hover */
     }
 
-    .about-cn, .about-en {
-      color: #fff; /* White text */
+    .about-cn,
+    .about-en {
+      color: #fff;
+      /* White text */
       font-size: 12px;
       line-height: 1.5;
       text-align: left;
@@ -542,19 +914,25 @@
       max-width: 1000px;
       margin-left: auto;
       margin-right: auto;
-      padding-left: 20px; /* Add left padding */
-      padding-right: 20px; /* Add right padding */
+      padding-left: 20px;
+      /* Add left padding */
+      padding-right: 20px;
+      /* Add right padding */
     }
-    .about-divider {
-    }
+
+    .about-divider {}
 
     .shader-bg {
       position: fixed;
       z-index: 0;
-      left: 0; top: 0; width: 100vw; height: 100vh;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
       pointer-events: none;
       overflow: hidden;
     }
+
     .shader-bg iframe {
       width: 200vw;
       height: 200vh;
@@ -564,67 +942,174 @@
       top: 50%;
       transform: translate(-50%, -50%);
     }
-    .shader-bg-pc { display: block; }
-    .shader-bg-mobile { display: none; }
-    @media (max-width: 900px) {
-      .shader-bg-pc { display: none; }
-      .shader-bg-mobile { display: block; }
+
+    .shader-bg-pc {
+      display: block;
     }
-    body > *:not(.shader-bg) {
+
+    .shader-bg-mobile {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .shader-bg-pc {
+        display: none;
+      }
+
+      .shader-bg-mobile {
+        display: block;
+      }
+    }
+
+    body>*:not(.shader-bg) {
       position: relative;
       z-index: 1;
     }
-    .shader-bg-mobile-video { display: none; }
+
+    .shader-bg-mobile-video {
+      display: none;
+    }
+
     @media (max-width: 900px) {
       .shader-bg-mobile-video {
         display: block;
         position: fixed;
         z-index: 0;
-        left: 0; top: 0; width: 100vw; height: 100vh;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
         overflow: hidden;
         pointer-events: none;
       }
+
       .shader-bg-mobile-video video {
         width: 100vw;
         height: 100vh;
         object-fit: cover;
       }
-      .shader-bg-mobile { display: none !important; }
+
+      .shader-bg-mobile {
+        display: none !important;
+      }
+    }
+
+    /* 新增：item悬停效果样式 */
+    .item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .item-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .item:hover .item-image {
+      transform: scale(1.1);
+    }
+
+    .item-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+      border-radius: 8px;
+    }
+
+    .item:hover .item-overlay {
+      opacity: 1;
+    }
+
+    .overlay-text {
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+      text-align: center;
+      padding: 15px;
+      max-width: 90%;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 600px) {
+      .item::before {
+        content: '';
+        display: block;
+        padding-top: 56.25%;
+        /* 16:9 */
+      }
+
+      .item-image {
+        position: absolute;
+        top: -2.5%;
+        left: -2.5%;
+        width: 105%;
+        height: 105%;
+        object-fit: cover;
+      }
+
+      .overlay-text {
+        font-size: 14px;
+        padding: 10px;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="shader-bg">
-    <iframe class="shader-bg-pc" src="./UltraWide_files/customize.html" frameborder="0" scrolling="no"></iframe>
-    <iframe class="shader-bg-mobile" src="./UltraWide_files/customize(1).html" frameborder="0" scrolling="no"></iframe>
+    <iframe class="shader-bg-pc"
+      src="https://www.shadergradient.co/customize?animate=on&axesHelper=off&bgColor1=%23000000&bgColor2=%23000000&brightness=1&cAzimuthAngle=180&cDistance=2.8&cPolarAngle=80&cameraZoom=9.1&color1=%23606080&color2=%238d7dca&color3=%23212121&destination=onCanvas&embedMode=off&envPreset=city&format=gif&fov=45&frameRate=10&gizmoHelper=hide&grain=on&lightType=3d&pixelDensity=1&positionX=0&positionY=0&positionZ=0&range=enabled&rangeEnd=40&rangeStart=0&reflection=0.1&rotationX=50&rotationY=0&rotationZ=-60&shader=defaults&type=waterPlane&uAmplitude=0&uDensity=1.5&uFrequency=0&uSpeed=0.3&uStrength=1.5&uTime=8&wireframe=false"
+      frameborder="0" scrolling="no"></iframe>
+    <iframe class="shader-bg-mobile"
+      src="https://www.shadergradient.co/customize?animate=on&axesHelper=off&bgColor1=%23000000&bgColor2=%23000000&brightness=1&cAzimuthAngle=180&cDistance=2.8&cPolarAngle=80&cameraZoom=9.1&color1=%2300007c&color2=%238d7dca&color3=%23212121&destination=onCanvas&embedMode=off&envPreset=city&format=gif&fov=45&frameRate=10&gizmoHelper=hide&grain=off&lightType=3d&pixelDensity=1&positionX=0&positionY=0&positionZ=0&range=enabled&rangeEnd=40&rangeStart=0&reflection=0.1&rotationX=50&rotationY=0&rotationZ=-60&shader=defaults&type=waterPlane&uAmplitude=0&uDensity=1.5&uFrequency=0&uSpeed=0.3&uStrength=1.5&uTime=8&wireframe=false"
+      frameborder="0" scrolling="no"></iframe>
     <div class="shader-bg-mobile-video">
       <video autoplay="" loop="" muted="" playsinline="">
-        <source src="assets/videos/mobile-bg.mp4" type="video/mp4">
+        <source src="./UltraWide_files/assets/videos/mobile-bg.mp4" type="video/mp4">
         您的浏览器不支持 video 标签。
       </video>
     </div>
   </div>
   <nav>
     <div class="nav-container">
-      <a href="http://ultrawide.cn/#home" class="logo">
+      <a href="https://ultrawidecn.github.io/#home" class="logo">
         <img src="./UltraWide_files/LOGO.png" alt="UltraWide Logo">
       </a>
       <ul>
-        <li><a href="http://ultrawide.cn/#home">首页</a></li>
-        <li><a href="http://ultrawide.cn/#works">作品</a></li>
-        <li><a href="http://ultrawide.cn/#about">关于我们</a></li>
-        <li><a href="http://ultrawide.cn/#contact">联系我们</a></li>
+        <li><a href="https://ultrawidecn.github.io//#home">首页</a></li>
+        <li><a href="https://ultrawidecn.github.io/#works">作品</a></li>
+        <li><a href="https://ultrawidecn.github.io/#about">关于我们</a></li>
+        <li><a href="https://ultrawidecn.github.io/#contact">联系我们</a></li>
       </ul>
       <button class="hamburger-icon" aria-label="Toggle navigation menu">
-        <!--?xml version="1.0" standalone="no"?--><svg t="1747553310917" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3890" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25"><path d="M66.488889 211.781818h891.022222c28.198788 0 50.980202-22.238384 50.980202-49.648485 0-27.397172-22.768485-49.648485-50.980202-49.648485H66.488889C38.341818 112.484848 15.508687 134.723232 15.508687 162.133333s22.833131 49.648485 50.980202 49.648485z m891.009293 248.242424H66.488889C38.277172 460.024242 15.508687 482.262626 15.508687 509.672727s22.768485 49.648485 50.980202 49.648485h891.022222c28.198788 0 50.980202-22.238384 50.980202-49.648485-0.012929-27.410101-22.923636-49.648485-50.993131-49.648485z m0 351.63798H66.488889c-28.134141 0-50.980202 22.238384-50.980202 49.648485s22.833131 49.648485 50.980202 49.648485h891.022222c28.198788 0 50.980202-22.238384 50.980202-49.648485-0.012929-27.397172-22.781414-49.648485-50.993131-49.648485z m0 0" p-id="3891"></path></svg>
+        <!--?xml version="1.0" standalone="no"?--><svg t="1747553310917" class="icon" viewBox="0 0 1024 1024"
+          version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3890" xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="25" height="25">
+          <path
+            d="M66.488889 211.781818h891.022222c28.198788 0 50.980202-22.238384 50.980202-49.648485 0-27.397172-22.768485-49.648485-50.980202-49.648485H66.488889C38.341818 112.484848 15.508687 134.723232 15.508687 162.133333s22.833131 49.648485 50.980202 49.648485z m891.009293 248.242424H66.488889C38.277172 460.024242 15.508687 482.262626 15.508687 509.672727s22.768485 49.648485 50.980202 49.648485h891.022222c28.198788 0 50.980202-22.238384 50.980202-49.648485-0.012929-27.410101-22.923636-49.648485-50.993131-49.648485z m0 351.63798H66.488889c-28.134141 0-50.980202 22.238384-50.980202 49.648485s22.833131 49.648485 50.980202 49.648485h891.022222c28.198788 0 50.980202-22.238384 50.980202-49.648485-0.012929-27.397172-22.781414-49.648485-50.993131-49.648485z m0 0"
+            p-id="3891"></path>
+        </svg>
       </button>
     </div>
     <div class="mobile-menu" style="top: 107px;">
       <ul>
-        <li><a href="http://ultrawide.cn/#home">首页</a></li>
-        <li><a href="http://ultrawide.cn/#works">作品</a></li>
-        <li><a href="http://ultrawide.cn/#about">关于我们</a></li>
-        <li><a href="http://ultrawide.cn/#contact">联系我们</a></li>
+        <li><a href="https://ultrawidecn.github.io/#home">首页</a></li>
+        <li><a href="https://ultrawidecn.github.io/#works">作品</a></li>
+        <li><a href="https://ultrawidecn.github.io/#about">关于我们</a></li>
+        <li><a href="https://ultrawidecn.github.io/#contact">联系我们</a></li>
       </ul>
     </div>
   </nav>
@@ -632,11 +1117,12 @@
   <!-- Hero Banner -->
   <section class="hero" id="home" style="margin-top: 107px;">
     <video class="hero-video" autoplay="" loop="" muted="" playsinline="">
-      <source src="assets/videos/hero-bg.mp4" type="video/mp4">
+      <source src="./UltraWide_files/assets/videos/hero-bg.mp4" type="video/mp4">
       您的浏览器不支持 video 标签。
     </video>
     <div class="hero-content">
-      <img src="./UltraWide_files/bannercontent.png" alt="Banner Content" style="max-width: 80%; height: auto; display: block; margin: 0 auto;">
+      <img src="./UltraWide_files/bannercontent.png" alt="Banner Content"
+        style="max-width: 80%; height: auto; display: block; margin: 0 auto;">
     </div>
   </section>
 
@@ -646,54 +1132,111 @@
       <div class="series-tabs">
         <button class="series-tab active" data-series="tvc">TVC</button>
         <button class="series-tab" data-series="microfilm">微电影与专题片</button>
-        <button class="series-tab" data-series="interviews">访谈系列</button>
+        <!-- <button class="series-tab" data-series="interviews">访谈系列</button> -->
         <button class="series-tab" data-series="antifraud">反诈系列</button>
       </div>
     </div>
     <div class="series-content">
       <div class="series-panel" id="series-tvc">
         <div class="gallery" id="tvc-gallery">
-          <div class="item" data-video="assets/videos/tvc1.mp4" data-title="清华大学2025新年祝福视频"><img src="./UltraWide_files/tvc1.jpg" alt="TVC1"></div>
-          <div class="item" data-video="assets/videos/tvc2.mp4" data-title="清华大学社会科学学院MIA招生宣传片-We Together, Hi Future"><img src="./UltraWide_files/tvc2.jpg" alt="TVC2"></div>
-          <div class="item" data-video="assets/videos/tvc3.mp4" data-title="清华大学体育代表队成立70周年宣传片-70年有我"><img src="./UltraWide_files/tvc3.jpg" alt="TVC3"></div>
-          <div class="item" data-video="assets/videos/tvc4.mp4" data-title="清华大学五四青年节105周年主题视频-清春"><img src="./UltraWide_files/tvc4.jpg" alt="TVC4"></div>
-          <div class="item" data-video="assets/videos/tvc5.mp4" data-title="清华大学五四青年节106周年主题视频-回声"><img src="./UltraWide_files/tvc5.jpg" alt="TVC5"></div>
-          <div class="item" data-video="assets/videos/tvc6.mp4" data-title="清华大学智汇清年论坛先导片"><img src="./UltraWide_files/tvc6.jpg" alt="TVC6"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/tvc1.mp4" data-title="清华大学五四青年节106周年主题视频-回声">
+            <img src="./UltraWide_files/assets/images/TVC/tvc1.jpg" alt="TVC1">
+          </div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/tvc2.mp4" data-title="清华大学体育代表队成立70周年宣传片-有我">
+            <img src="./UltraWide_files/assets/images/TVC/tvc2.bmp" alt="TVC2">
+          </div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/tvc3.mp4" data-title="清华大学2025新年祝福视频"><img
+              src="./UltraWide_files/assets/images/TVC/tvc3.jpg" alt="TVC3"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/tvc4.mp4" data-title="清华大学智汇清年论坛先导片"><img
+              src="./UltraWide_files/assets/images/TVC/tvc4.jpg" alt="TVC4"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/tvc5.mp4"
+            data-title="清华大学社会科学学院MIA招生宣传片-We Together, Hi Future"><img
+              src="./UltraWide_files/assets/images/TVC/tvc5.jpg" alt="TVC5"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/tvc6.mp4" data-title="清华大学自强书院招生宣传片-学生篇"><img
+              src="./UltraWide_files/assets/images/TVC/tvc6.jpg" alt="TVC5"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/tvc7.mp4" data-title="清华大学自强书院招生宣传片-院士篇"><img
+              src="./UltraWide_files/assets/images/TVC/tvc7.jpg" alt="TVC5"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/tvc8.mp4" data-title="清华大学五四青年节105周年主题视频-清春">
+            <img src="./UltraWide_files/assets/images/TVC/tvc8.bmp" alt="TVC8">
+          </div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/tvc9.mp4" data-title="清华大学交叉信息学院原创歌曲-人机迷雾MV">
+            <img src="./UltraWide_files/assets/images/TVC/tvc9.bmp" alt="TVC9">
+          </div>
+
         </div>
         <button class="more-btn" id="tvc-more-btn" style="display:none;">More</button>
       </div>
       <div class="series-panel" id="series-microfilm" style="display:none;">
         <div class="gallery" id="microfilm-gallery">
-          <div class="item" data-video="assets/videos/micro1.mp4" data-title="2022新闻学院一二·九先导片"><img src="./UltraWide_files/micro1.jpg" alt="微电影1"></div>
-          <div class="item" data-video="assets/videos/micro2.mp4" data-title="2024北大城市与环境学院一二·九宣传片-什么是青春"><img src="./UltraWide_files/micro2.jpg" alt="微电影2"></div>
-          <div class="item" data-video="assets/videos/micro3.mp4" data-title="清华大学2024毕业MV-身边"><img src="./UltraWide_files/micro3.jpg" alt="微电影3"></div>
-          <div class="item" data-video="assets/videos/micro4.mp4" data-title="清华大学2024学术道德微电影-一念之间"><img src="./UltraWide_files/micro4.jpg" alt="微电影4"></div>
-          <div class="item" data-video="assets/videos/micro5.mp4" data-title="清华大学交叉信息学院原创歌曲-人机迷雾MV"><img src="./UltraWide_files/micro5.jpg" alt="微电影5"></div>
-          <div class="item" data-video="assets/videos/micro6.mp4" data-title="清华大学拉美中心2024减贫营宣传片"><img src="./UltraWide_files/micro6.jpg" alt="微电影6"></div>
-          <div class="item more-item" data-video="assets/videos/micro7.mp4" data-title="清华大学校园讲解视频-相约清华"><img src="./UltraWide_files/micro7.jpg" alt="微电影7"></div>
-          <div class="item more-item" data-video="assets/videos/micro8.mp4" data-title="全球胜任力专题调研课程赴荷比卢支队纪录片-2023"><img src="./UltraWide_files/micro8.jpg" alt="微电影8"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/micro1.mp4" data-title="清华大学创新清华对话科学系列论坛-首期先导片">
+            <img src="./UltraWide_files/assets/images/micro/micro1.png" alt="MICRO1">
+          </div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/micro2.mp4"
+            data-title="清华大学创新清华对话科学系列论坛-张钹院士专访"><img src="./UltraWide_files/assets/images/micro/micro2.jpg"
+              alt="MICRO2"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/micro3.mp4"
+            data-title="清华大学创新清华对话科学系列论坛-刘嘉教授专访"><img src="./UltraWide_files/assets/images/micro/micro3.jpeg"
+              alt="MICRO3"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/micro4.mp4" data-title="2024北大城环一二·九纪念短片-青春是什么">
+            <img src="./UltraWide_files/assets/images/micro/micro4.jpg" alt="MICRO4">
+          </div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/micro5.mp4" data-title="清华大学2024学术道德微电影-一念之间">
+            <img src="./UltraWide_files/assets/images/micro/micro5.jpg" alt="MICRO5">
+          </div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/micro6.mp4"
+            data-title="2023-2024学年度清华大学研究生先进集体宣传片-同行"><img src="./UltraWide_files/assets/images/micro/micro6.jpg"
+              alt="MICRO6"></div>
+          <div class="item more-item" data-video="./UltraWide_files/assets/videos/micro7.mp4"
+            data-title="2023全球胜任力专题调研课程赴荷比卢支队纪录片-你好欧罗巴"><img src="./UltraWide_files/assets/images/micro/micro7.bmp"
+              alt="MICRO7"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/micro8.mp4" data-title="清华大学2024毕业MV《身边》"><img
+              src="./UltraWide_files/assets/images/micro/micro8.JPG" alt="MICRO8"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/micro9.mp4" data-title="清华大学拉美中心2024减贫营宣传片"><img
+              src="./UltraWide_files/assets/images/micro/micro9.bmp" alt="MICRO9"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/micro10.mp4"
+            data-title="清华大学创新清华对话科学系列论坛-王笑楠专访"><img src="./UltraWide_files/assets/images/micro/micro10.jpg"
+              alt="MICRO10"></div>
+          <div class="item more-item" data-video="./UltraWide_files/assets/videos/micro11.mp4"
+            data-title="清华大学校园讲解视频-相约清华"><img src="./UltraWide_files/assets/images/micro/micro11.jpg" alt="MICRO11">
+          </div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/micro12.mp4" data-title="清华大学新闻学院一二·九先导片-有我">
+            <img src="./UltraWide_files/assets/images/micro/micro12.bmp" alt="MICRO12">
+          </div>
         </div>
         <button class="more-btn" id="microfilm-more-btn" style="display: block;">More</button>
       </div>
-      <div class="series-panel" id="series-interviews" style="display:none;">
+      <!-- <div class="series-panel" id="series-interviews" style="display:none;">
         <div class="gallery" id="interviews-gallery">
-          <div class="item" data-video="assets/videos/interview1.mp4" data-title="2023-2024学年度清华大学研究生先进集体宣传片"><img src="./UltraWide_files/interview1.jpg" alt="访谈1"></div>
-          <div class="item" data-video="assets/videos/interview2.mp4" data-title="清华大学创新清华对话科学系列论坛-刘嘉教授专访"><img src="./UltraWide_files/interview2.jpg" alt="访谈2"></div>
-          <div class="item" data-video="assets/videos/interview3.mp4" data-title="清华大学创新清华对话科学系列论坛-王笑楠副教授专访"><img src="./UltraWide_files/interview3.jpg" alt="访谈3"></div>
-          <div class="item" data-video="assets/videos/interview4.mp4" data-title="清华大学创新清华对话科学系列论坛-先导片"><img src="./UltraWide_files/interview4.jpg" alt="访谈4"></div>
-          <div class="item" data-video="assets/videos/interview5.mp4" data-title="清华大学创新清华对话科学系列论坛-张钹院士专访"><img src="./UltraWide_files/interview5.jpg" alt="访谈5"></div>
+          
+          
+          
         </div>
         <button class="more-btn" id="interviews-more-btn" style="display:none;">More</button>
-      </div>
+      </div> -->
       <div class="series-panel" id="series-antifraud" style="display:none;">
         <div class="gallery" id="antifraud-gallery">
-          <div class="item" data-video="assets/videos/antifraud1.mp4" data-title="清华大学反诈专题视频-爱情刺客"><img src="./UltraWide_files/antifraud1.jpg" alt="反诈1"></div>
-          <div class="item" data-video="assets/videos/antifraud2.mp4" data-title="清华大学反诈专题视频-养老刺客"><img src="./UltraWide_files/antifraud2.jpg" alt="反诈2"></div>
-          <div class="item" data-video="assets/videos/antifraud3.mp4" data-title="清华大学反诈专题视频-用电影的方式打开反诈I"><img src="./UltraWide_files/antifraud3.jpg" alt="反诈3"></div>
-          <div class="item" data-video="assets/videos/antifraud4.mp4" data-title="清华大学反诈专题视频-用电影的方式打开反诈II"><img src="./UltraWide_files/antifraud4.jpg" alt="反诈4"></div>
-          <div class="item" data-video="assets/videos/antifraud5.mp4" data-title="清华大学反诈专题视频-用电影的方式打开反诈III"><img src="./UltraWide_files/antifraud5.jpg" alt="反诈5"></div>
-          <div class="item" data-video="assets/videos/antifraud6.mp4" data-title="清华大学反诈专题视频-招聘刺客"><img src="./UltraWide_files/antifraud6.jpg" alt="反诈6"></div>
-          <div class="item more-item" data-video="assets/videos/antifraud7.mp4" data-title="用三国演义的方式打开反诈"><img src="./UltraWide_files/antifraud7.jpg" alt="反诈7"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/antifraud1.mp4" data-title="清华大学反诈专题视频-爱情刺客">
+            <img src="./UltraWide_files/assets/images/antifraud/antifraud1.bmp" alt="反诈1">
+          </div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/antifraud2.mp4" data-title="清华大学反诈专题视频-养老刺客">
+            <img src="./UltraWide_files/assets/images/antifraud/antifraud2.png" alt="反诈2">
+          </div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/antifraud3.mp4" data-title="清华大学反诈专题视频-招聘刺客">
+            <img src="./UltraWide_files/assets/images/antifraud/antifraud3.bmp" alt="反诈3">
+          </div>
+          <div class="item more-item" data-video="./UltraWide_files/assets/videos/antifraud4.mp4"
+            data-title="人民日报贺岁反诈系列-用三国演义的方式打开反诈"><img src="./UltraWide_files/assets/images/antifraud/antifraud4.png"
+              alt="反诈4">
+          </div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/antifraud5.mp4"
+            data-title="清华大学反诈专题视频-用电影的方式打开反诈III"><img src="./UltraWide_files/assets/images/antifraud/antifraud5.jpg"
+              alt="反诈5"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/antifraud6.mp4"
+            data-title="第一届全国大学生金融可以创新大赛宣传片I"><img src="./UltraWide_files/assets/images/antifraud/antifraud6.bmp"
+              alt="反诈6"></div>
+          <div class="item" data-video="./UltraWide_files/assets/videos/antifraud7.mp4"
+            data-title="第一届全国大学生金融可以创新大赛宣传片II"><img src="./UltraWide_files/assets/images/antifraud/antifraud7.bmp"
+              alt="反诈7"></div>
         </div>
         <button class="more-btn" id="antifraud-more-btn" style="display: block;">More</button>
       </div>
@@ -704,16 +1247,61 @@
   <section class="about-section" id="about">
     <h2 class="about-title">关于我们</h2>
     <div class="about-cn">
-      <strong>清青超广角影视（UltraWide Media Studio）</strong>成立于 2024 年 5 月，诞生于清华园的创新沃土，以 "超广角・致青年" 为精神内核，致力于打造 "以硬核科技为骨，以人文情怀为魂" 的新型影像内容。我们秉持 "用青年视角解构宏大叙事，以帧率精度传递时代温度" 的使命，光影足迹从清华学堂延伸至中拉减贫营。<br><br>
-      自成立以来，我们已构建起覆盖 6 大领域、与 20 + 顶级机构的深度合作网络。作品相继登陆人民日报、公安部刑侦局、国家反诈中心、清华大学等平台，打造出《三国反诈》《回声》《清春》等破圈佳作，单期作品最高播放量突破 5000 万次。<br><br>
+      <strong>清青超广角影视（UltraWide Media Studio）</strong>成立于 2024 年 5 月，诞生于清华园的创新沃土，以 "超广角・致青年" 为精神内核，致力于打造
+      "以硬核科技为骨，以人文情怀为魂" 的新型影像内容。我们秉持 "用青年视角解构宏大叙事，以帧率精度传递时代温度" 的使命，光影足迹从清华学堂延伸至中拉减贫营。<br><br>
+      自成立以来，我们已构建起覆盖 6 大领域、与 20 + 顶级机构的深度合作网络。作品相继登陆人民日报、公安部刑侦局、国家反诈中心、清华大学等平台，打造出《三国反诈》《回声》《清春》等破圈佳作，单期作品最高播放量突破 5000
+      万次。<br><br>
       展望未来，我们将以 "自强不息" 的精神继续深耕影像领域，让青年影像成为跨越山海、对话世界的文化纽带。
     </div>
     <div class="about-en">
-      <strong>UltraWide Media Studio</strong>, founded in May 2024, was born from the innovative environment of Tsinghua University. With the core spirit of "UltraWide: To the Youth," we are dedicated to creating a new type of visual content that is "rooted in hard-core technology and soulful with humanistic care." Upholding the mission of "deconstructing grand narratives from a youthful perspective and conveying the pulse of the era with frame-rate precision," our visual footprint extends from Tsinghua classrooms to the China-Latin America Poverty Reduction Camp.<br><br>
-      Since our establishment, we have built a deep collaborative network covering 6 major fields and partnering with over 20 top institutions. Our works have been featured on platforms such as People's Daily, Criminal Investigation Department of the Ministry of Public Security, National Anti-Fraud Center, and Tsinghua University, creating viral hits like "Three Kingdoms Anti-Fraud," "Echo," and "Qingchun," with the highest single episode view count exceeding 50 million.<br><br>
-      Looking ahead, we will continue to cultivate the field of visual media with the spirit of "Self-Improvement," making youth visual content a cultural bridge that crosses mountains and seas and dialogues with the world.
+      <strong>UltraWide Media Studio</strong>, founded in May 2024, was born from the innovative environment of Tsinghua
+      University. With the core spirit of "UltraWide: To the Youth," we are dedicated to creating a new type of visual
+      content that is "rooted in hard-core technology and soulful with humanistic care." Upholding the mission of
+      "deconstructing grand narratives from a youthful perspective and conveying the pulse of the era with frame-rate
+      precision," our visual footprint extends from Tsinghua classrooms to the China-Latin America Poverty Reduction
+      Camp.<br><br>
+      Since our establishment, we have built a deep collaborative network covering 6 major fields and partnering with
+      over 20 top institutions. Our works have been featured on platforms such as People's Daily, Criminal Investigation
+      Department of the Ministry of Public Security, National Anti-Fraud Center, and Tsinghua University, creating viral
+      hits like "Three Kingdoms Anti-Fraud," "Echo," and "Qingchun," with the highest single episode view count
+      exceeding 50 million.<br><br>
+      Looking ahead, we will continue to cultivate the field of visual media with the spirit of "Self-Improvement,"
+      making youth visual content a cultural bridge that crosses mountains and seas and dialogues with the world.
     </div>
   </section>
+
+  <!-- 联系我们板块 -->
+  <section class="contact-section" id="contact">
+    <h2>联系我们</h2>
+
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3 class="contact-title">联系方式(TEL)</h3>
+        <div class="contact-details">
+          <span class="tel-number">131 4668 0936</span>
+          <span class="tel-number">185 0009 6311</span>
+        </div>
+      </div>
+
+      <div class="contact-info">
+        <h3 class="contact-title">微信咨询</h3>
+        <div class="qrcode-container">
+          <div class="qrcode-placeholder">
+            <img src="./UltraWide_files/assets/images/qrcode.jpg" class="qrcode-image">
+          </div>
+          <p class="qrcode-label">扫描二维码添加微信</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-note">
+      <p><strong>清青超广角影视</strong> 团队期待与您的合作！无论您有任何项目需求、合作意向或疑问，请随时通过以上方式与我们取得联系。</p>
+    </div>
+  </section>
+
+  <div class="footer">
+    <p>© 2025 UltraWide Media Studio. 保留所有权利。</p>
+  </div>
 
   <!-- 弹窗容器 -->
   <div class="modal" id="modal">
@@ -765,7 +1353,7 @@
 
     // 平滑滚动
     document.querySelectorAll('nav a').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const section = document.querySelector(this.getAttribute('href'));
         section.scrollIntoView({ behavior: 'smooth' });
@@ -774,7 +1362,7 @@
 
     // 系列小导航栏交互
     document.querySelectorAll('.series-tab').forEach(tab => {
-      tab.addEventListener('click', function() {
+      tab.addEventListener('click', function () {
         // 切换高亮
         document.querySelectorAll('.series-tab').forEach(t => t.classList.remove('active'));
         this.classList.add('active');
@@ -807,7 +1395,7 @@
             el.classList.add('more-item');
           }
         });
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
           gallery.classList.toggle('show-more');
           if (gallery.classList.contains('show-more')) {
             btn.textContent = '收起';
@@ -934,6 +1522,69 @@
         setTimeout(setHeroMargin, 300); // 300ms 延迟，可根据需要调整
       });
     }
+    // 自动为每个item添加悬停文字层
+    document.addEventListener('DOMContentLoaded', function () {
+      const items = document.querySelectorAll('.item');
+
+      items.forEach(item => {
+        // 获取data-title值
+        const title = item.getAttribute('data-title');
+
+        // 创建悬停层
+        const overlay = document.createElement('div');
+        overlay.className = 'item-overlay';
+
+        // 创建文字元素
+        const textDiv = document.createElement('div');
+        textDiv.className = 'overlay-text';
+        textDiv.textContent = title;
+
+        // 添加到悬停层
+        overlay.appendChild(textDiv);
+
+        // 添加到item
+        item.appendChild(overlay);
+
+        // 确保图片有正确的类名
+        const img = item.querySelector('img');
+        if (img) {
+          img.classList.add('item-image');
+        }
+      });
+    });
   </script>
 
- </body></html>
+  <script>
+    // 平滑滚动到锚点
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+
+        if (targetSection) {
+          window.scrollTo({
+            top: targetSection.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // 卡片悬停效果增强
+    document.querySelectorAll('.contact-info').forEach(card => {
+      card.addEventListener('mousemove', function (e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        this.style.setProperty('--mouse-x', `${x}px`);
+        this.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>
